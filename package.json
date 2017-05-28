@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A Solitaire game written in TypeScript using Phaser and Webpack",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "xcopy /S /I /Y src\\images dist\\images && webpack-dev-server",
+    "build": "xcopy /S /I /Y src\\images dist\\images && webpack"
   },
   "author": "GV",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.1",
     "expose-loader": "^0.7.3",
+    "file-loader": "^0.11.1",
     "source-map-loader": "^0.2.1",
     "ts-loader": "^2.1.0",
     "tslint": "^5.3.2",

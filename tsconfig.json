@@ -1,9 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "es6"
-    },
-    "files": [
-        "./node_modules/phaser-ce/typescript/phaser.comments.d.ts"
-    ]
+        "target": "es5",
+        "noImplicitAny": true
+    }
 }

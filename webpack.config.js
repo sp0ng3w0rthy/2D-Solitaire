@@ -1,40 +1,44 @@
 const path = require('path');
 const webpack = require('webpack');
-
 const LiveReloadPlugin = require('webpack-livereload-plugin');
-const phaserModulePath = path.join(__dirname, '/node_modules/phaser-ce/')
+// Phaser webpack config
+var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/')
+var phaser = path.join(phaserModule, 'build/custom/phaser-split.js')
+var pixi = path.join(phaserModule, 'build/custom/pixi.js')
+var p2 = path.join(phaserModule, 'build/custom/p2.js')
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: {
+    app: './src/main.ts',
+    vendor: ['pixi', 'p2', 'phaser']
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
-    filename: 'game.js'
+    publicPath: 'dist/',
+    filename: 'bundle.js'
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
-      { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
+      { test: /\.js$/, enforce: 'pre', use: 'source-map-loader' },
       { test: /\.ts?$/, enforce: 'pre', use: 'source-map-loader' },
-      { test: /\.ts?$/, exclude: /node_modules/, use: ['babel-loader', 'ts-loader'] },
-      {
-        test: /pixi\.js/, use: [{ loader: 'expose-loader', options: 'PIXI' }],
-      },
-      {
-        test: /phaser-split\.js$/, use: [{ loader: 'expose-loader', options: 'Phaser' }],
-      },
-      {
-        test: /p2\.js/, use: [{ loader: 'expose-loader', options: 'p2' }],
-      }
+      { test: /\.ts?$/, exclude: /node_modules/, use: 'ts-loader' },
+      { test: /pixi\.js/, use: 'expose-loader?PIXI' },
+      { test: /phaser-split\.js$/, use: 'expose-loader?Phaser' },
+      { test: /p2\.js/, use: 'expose-loader?p2' }
     ]
   },
-  plugins: [new LiveReloadPlugin(), new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor'/* chunkName= */, filename: 'vendor.bundle.js'/* filename= */ }),
+    new webpack.HotModuleReplacementPlugin(),
+    new LiveReloadPlugin(),
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
-      phaser: path.join(phaserModulePath, 'build/custom/phaser-split.js'),
-      pixi: path.join(phaserModulePath, 'build/custom/pixi.js'),
-      p2: path.join(phaserModulePath, 'build/custom/p2.js')
+      'phaser': phaser,
+      'pixi': pixi,
+      'p2': p2
     }
   },
-  devtool: 'inline-source-map'
 };

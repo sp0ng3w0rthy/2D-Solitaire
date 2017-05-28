@@ -1,13 +1,17 @@
 import 'pixi';
 import 'p2';
-import Phaser from 'phaser';
-import GameState from './Game';
+import * as Phaser from 'phaser-ce';
+
+import GameState from './states/Game';
 
 class Solitaire extends Phaser.Game {
     constructor() {
-        super(1280, 720, Phaser.AUTO, '', null);
+        super(1280, 720, Phaser.AUTO, 'content', null);
         this.state.add('Game', GameState, false);
         this.state.start('Game');
     }
 }
-window.game = new Solitaire();
+
+window.onload = () => {
+    let game = new Solitaire();
+};

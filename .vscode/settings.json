@@ -1,0 +1,50 @@
+{
+    "workbench.welcome.enabled": false,
+    "workbench.iconTheme": "vs-seti",
+    "files.autoSave": "onFocusChange",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": false,
+    "vim.leader": "<space>",
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": ":w"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "q"
+            ],
+            "after": [],
+            "commands": [
+                {
+                    "command": ":q"
+                }
+            ]
+        }
+    ],
+    "window.zoomLevel": 0,
+    "vim.disableAnnoyingNeovimMessage": true,
+    "files.exclude": {
+        "**/.git": true,
+        "node_modules": false,
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.js.map": true
+    },
+    "tslint.enable": true,
+    "tslint.configFile": "./tslint.json",
+    "typescript.tsdk": "./node_modules/typescript/lib"
+}

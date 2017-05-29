@@ -3,13 +3,13 @@
     "workbench.iconTheme": "vs-seti",
     "files.autoSave": "onFocusChange",
     "files.exclude": {
-        "dist": true,
+        "dist": false,
         "**/.git": true,
         "node_modules": true,
         "**/*.js": {
             "when": "$(basename).ts"
         },
-        "**/*.js.map": true
+        "**/*.js.map": false
     },
     "window.zoomLevel": 0,
     "tslint.enable": true,

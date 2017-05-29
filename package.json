@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A Solitaire game written in TypeScript using Phaser and Webpack",
   "scripts": {
-    "start": "xcopy /S /I /Y src\\images dist\\images && webpack-dev-server",
-    "build": "xcopy /S /I /Y src\\images dist\\images && webpack"
+    "start": "xcopy /S /I /Y src\\assets dist\\assets && webpack-dev-server",
+    "build": "xcopy /S /I /Y src\\assets dist\\assets && webpack"
   },
   "author": "GV",
   "license": "ISC",

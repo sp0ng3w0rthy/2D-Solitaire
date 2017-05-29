@@ -39,19 +39,19 @@ export default class extends Phaser.Sprite {
     private checkOverlap(card: Card, pointer: Phaser.Pointer) {
         let pile;
         let tableau;
-        pile = card.game.data.piles.list.filter(function (pile) {
-            return card.game.physics.arcade.overlap(this, pile);
-        }, this).pop();
-        tableau = card.game.data.tableaus.list.filter(function (tableau) {
-            return card.game.physics.arcade.overlap(this, tableau);
-        }, this).pop();
-        if (pile != null) {
-            this.placedInPile.dispatch(pile);
-        } else if (tableau != null) {
-            this.placedInTableau.dispatch(tableau, this);
-        } else {
-            this.data.origParent.add(this);
-            this.position = this.data.origPos.clone();
-        }
+        // pile = card.game.piles.list.filter(function (pile) {
+        //     return card.game.physics.arcade.overlap(this, pile);
+        // }, this).pop();
+        // tableau = card.game.tableaus.list.filter(function (tableau) {
+        //     return card.game.physics.arcade.overlap(this, tableau);
+        // }, this).pop();
+        // if (pile != null) {
+        //     this.onPlacedInTableau.dispatch(pile);
+        // } else if (tableau != null) {
+        //     this.onPlacedInTableau.dispatch(tableau, this);
+        // } else {
+        //     this.data.origParent.add(this);
+        //     this.position = this.data.origPos.clone();
+        // }
     }
 }

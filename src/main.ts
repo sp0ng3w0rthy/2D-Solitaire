@@ -7,7 +7,7 @@ import GameState from './Game';
 class Solitaire extends Phaser.Game {
     constructor() {
         super(1280, 720, Phaser.AUTO, 'content', null);
-        this.state.add('Game', GameState, false);
+        this.state.add('Game', GameState, true);
         this.state.start('Game');
     }
 }

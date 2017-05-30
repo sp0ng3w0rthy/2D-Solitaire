@@ -1,16 +1,11 @@
 {
     "workbench.welcome.enabled": false,
     "workbench.iconTheme": "vs-seti",
-    "files.autoSave": "onFocusChange",
-    "files.exclude": {
-        "dist": false,
-        "**/.git": true,
-        "node_modules": true,
-        "**/*.js": {
-            "when": "$(basename).ts"
-        },
-        "**/*.js.map": false
-    },
+    "editor.cursorBlinking": "smooth",
+    "files.autoSave": "off",
+    "editor.formatOnSave": true,
+    "window.openFoldersInNewWindow": "on",
+    "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 0,
     "tslint.enable": true,
     "tslint.configFile": "./tslint.json",
@@ -23,6 +18,14 @@
     "vim.hlsearch": false,
     "vim.leader": "<space>",
     "vim.disableAnnoyingNeovimMessage": true,
+    "files.exclude": {
+        "dist": false,
+        "**/.git": true,
+        "node_modules": true,
+        "**/*.js": {
+            "when": "$(basename).ts"
+        }
+    },
     "vim.otherModesKeyBindingsNonRecursive": [
         {
             "before": [

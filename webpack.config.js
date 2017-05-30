@@ -9,7 +9,7 @@ var p2 = path.join(phaserModule, 'build/custom/p2.js')
 
 module.exports = {
   entry: {
-    app: './src/main.ts',
+    app: './src/Main.ts',
     vendor: ['pixi', 'p2', 'phaser']
   },
   output: {

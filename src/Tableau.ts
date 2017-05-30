@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser-ce';
+import Game from './Game';
 
 export default class extends Phaser.Group {
 
@@ -8,8 +9,14 @@ export default class extends Phaser.Group {
      * @param {number} firstCardY
      * @param {number} suitIndex
      */
-    constructor(game: Phaser.Game, firstCardX: number, firstCardY: number, suitIndex: number) {
-        super(game);
+    constructor(state: Game, numOfCards: number, point: Phaser.Point) {
+        super(state.game, null);
+        for (let i = 0; i < numOfCards; i++) {
+            let card = state.deck.drawRandomCard();
+            card.x = point.x;
+            card.y = point.y;
+            point.add(100, 0);
+        }
     }
 
 }

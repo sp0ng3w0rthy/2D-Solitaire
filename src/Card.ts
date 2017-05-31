@@ -1,53 +1,104 @@
 import * as Phaser from 'phaser-ce';
-import Card from './Card';
 import Game from './Game';
 import Tableau from './Tableau';
+import Foundation from './Foundation';
 
-export default class extends Phaser.Sprite {
 
-    cardNum: number;
-    topCard: boolean;
-    suit: number;
-    color: string;
-    frameIndex: number;
-    origPos: Phaser.Point;
-    origParent: any;
+enum SUITS { 'clubs', 'hearts', 'spades', 'diamonds' }
 
-    constructor(state: Game, x: number, y: number, cardNum: number, suit: number) {
+/**
+ * Represents a Card class
+ * @class Card
+ * @extends {Phaser.Sprite}
+ */
+class Card extends Phaser.Sprite {
+
+    static SUITS = SUITS;
+
+    public state: Game;
+    public cardNum: number;
+    public topCard: boolean;
+    public suit: number;
+    public color: string;
+    public frameIndex: number;
+    public prevPoint: Phaser.Point;
+    public prevParent: Phaser.Group;
+    public facedDown: boolean;
+
+    public constructor(state: Game, x: number, y: number, cardNum: number, suitIndex: number) {
         super(state.game, x, y, 'back');
-        this.cardNum = cardNum + 1;
-        this.suit = suit;
-        this.color = (suit === 0 || suit === 2) ? 'black' : 'red';
-        this.frameIndex = cardNum + (suit * 13);
-        this.origPos = new Phaser.Point();
-        this.origParent = null;
-        this.events.onDragStart.add((card: Card, pointer: Phaser.Pointer) => {
-            state.tableaus.map((tab) => { tab.hitArea = tab.getBounds(); });
-            card.origParent = card.parent;
-            card.position.copyTo(card.origPos);
-            card.parent.removeChild(card);
-            card.game.add.existing(card);
-        });
-        this.events.onDragStop.add(this.checkOverlap, this, 0, state);
-        // this.events.onDragUpdate.add((card: Card, pointer: Phaser.Pointer, x: number, y: number, point: Phaser.Point, fromStart: boolean) => {
-        // let parent: Phaser.Group = card.data.origParent;
-        // let childIndex = parent.getChildIndex(card);
-        // let allChildrenUnder = parent.getAll('exists', true, childIndex);
-        // let a = 1;
-        // });
+        this.state = state;
+        this.suit = suitIndex;
+        this.facedDown = true;
+        this.cardNum = cardNum;
+        this.prevPoint = new Phaser.Point();
+        this.frameIndex = cardNum - 1 + (suitIndex * 13);
+        this.color = (suitIndex === 0 || suitIndex === 2) ? 'black' : 'red';
+        this.events.onInputDown.add(this.flipCard);
+        this.events.onDragStop.add(this.checkOverlap);
+        this.events.onDragStart.add(this.setPreviousValues);
+        this.events.onDragStart.add(this.initDrag);
     }
 
-    checkOverlap(card: Card, pointer: Phaser.Pointer, state: Game) {
-        // let overlapped: Tableau = state.tableaus.filter((tableau) => { return card.overlap(tableau); }).pop();
-        // if (overlapped !== null) {
-        //     overlapped.add(card);
-        //     card.x = 0;
-        //     card.y = 30;
-        // } else {
+    public flipCard = (card: Card, pointer: Phaser.Pointer) => {
+        if (card.facedDown && card.parent.getChildIndex(card) === card.parent.children.length - 1) {
+            card.facedDown = false;
+            card.initCard();
+        }
+    }
+
+    public initCard = () => {
+        this.loadTexture('deck', this.frameIndex);
+        this.inputEnabled = true;
+        this.input.useHandCursor = true;
+        this.input.enableDrag();
+    }
+
+    private initDrag = (card: Card, pointer: Phaser.Pointer) => {
+        if (card.parent.children.length - 1 !== card.parent.getChildIndex(card)) {
+            let siblingsAbove = card.parent.children.slice(card.parent.getChildIndex(card), card.parent.children.length);
+            siblingsAbove.forEach((c: Card) => {
+                card.addChild(c);
+                c.x = 0;
+                c.y = 20;
+            });
+        }
         card.parent.removeChild(card);
-        card.origParent.add(card);
-        card.x = card.origPos.x;
-        card.y = card.origPos.y;
-        // }
+        card.game.add.existing(card);
+    }
+
+    public resetPosition = () => {
+        if (this.children.length !== 0) {
+            this.children.forEach((childCard: Card) => {
+                this.removeChild(childCard);
+                childCard.prevParent.add(childCard);
+                childCard.position.copyFrom(childCard.prevPoint);
+            });
+        }
+        this.prevParent.add(this);
+        this.position.copyFrom(this.prevPoint);
+    }
+
+    private setPreviousValues = (card: Card, pointer: Phaser.Pointer) => {
+        card.prevParent = card.parent as Phaser.Group;
+        card.position.copyTo(card.prevPoint);
+    }
+
+    private checkOverlap = (card: Card, pointer: Phaser.Pointer) => {
+        let overlappedTableau: Tableau = this.state.tableaus.filter((tableau) => {
+            return card.overlap(tableau);
+        }).pop();
+        let overlappedFoundation: Foundation = this.state.foundations.filter((foundation) => {
+            return card.overlap(foundation);
+        }).pop();
+        if (overlappedTableau !== undefined) {
+            overlappedTableau.handleCard(card);
+        } else if (overlappedFoundation !== undefined) {
+            overlappedFoundation.handleCard(card);
+        } else {
+            this.resetPosition();
+        }
     }
 }
+
+export default Card;

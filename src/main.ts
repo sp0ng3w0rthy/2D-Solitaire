@@ -4,7 +4,7 @@ import * as Phaser from 'phaser-ce';
 import PlayState from './Game';
 
 class Solitaire extends Phaser.Game {
-    constructor() {
+    public constructor() {
         super(1280, 720, Phaser.AUTO, 'content', null);
         this.state.add('Game', PlayState, true);
     }

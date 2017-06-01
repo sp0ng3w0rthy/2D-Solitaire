@@ -11,5 +11,5 @@ class Solitaire extends Phaser.Game {
 }
 
 window.onload = () => {
-    let game = new Solitaire();
+    new Solitaire();
 };

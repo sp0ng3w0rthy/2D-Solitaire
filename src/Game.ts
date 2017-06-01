@@ -1,7 +1,6 @@
 import * as Phaser from 'phaser-ce';
 import Foundation from './Foundation';
 import Tableau from './Tableau';
-import Card from './Card';
 import Deck from './Deck';
 
 /**

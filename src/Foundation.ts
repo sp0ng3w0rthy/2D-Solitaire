@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser-ce';
-import Game from './Game';
+import SUITS from './globals';
+import PlayState from './PlayState';
 import Card from './Card';
 
 /**
@@ -11,15 +12,14 @@ class Foundation extends Phaser.Group {
 
     suit: number;
 
-    /**
-     * @param {Game} state
-     * @param {number} suitIndex
-     */
-    public constructor(state: Game, point: Phaser.Point, suitIndex: number) {
+    public constructor(state: PlayState, point: Phaser.Point, suitIndex: number) {
         super(state.game);
         this.suit = suitIndex;
         this.enableBody = true;
-        this.add(new Phaser.Sprite(state.game, point.x, point.y, Card.SUITS[suitIndex]));
+        let placeHolder = new Phaser.Sprite(state.game, point.x, point.y, SUITS[suitIndex]);
+        placeHolder.scale.add(0.3, 0.3);
+        placeHolder.alpha = 0.8;
+        this.add(placeHolder);
         this.getTop().cardNum = 0;
     }
 
@@ -35,6 +35,6 @@ class Foundation extends Phaser.Group {
             card.resetPosition();
         }
     }
-
 }
+
 export default Foundation;

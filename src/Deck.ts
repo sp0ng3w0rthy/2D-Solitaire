@@ -1,12 +1,12 @@
 import * as Phaser from 'phaser-ce';
 import Card from './Card';
-import Game from './Game';
+import PlayState from './PlayState';
 
 class Deck extends Phaser.Group {
 
-    state: Game;
+    state: PlayState;
 
-    public constructor(state: Game) {
+    public constructor(state: PlayState) {
         super(state.game, null, 'deckGroup', false, true);
         this.state = state;
         for (let suit = 0; suit < 4; suit++) {

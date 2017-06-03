@@ -1,10 +1,8 @@
 import * as Phaser from 'phaser-ce';
-import Game from './Game';
+import SUITS from './globals';
+import PlayState from './PlayState';
 import Tableau from './Tableau';
 import Foundation from './Foundation';
-
-
-enum SUITS { 'clubs', 'hearts', 'spades', 'diamonds' }
 
 /**
  * Represents a Card class
@@ -15,7 +13,7 @@ class Card extends Phaser.Sprite {
 
     static SUITS = SUITS;
 
-    public state: Game;
+    public state: PlayState;
     public cardNum: number;
     public topCard: boolean;
     public suit: number;
@@ -25,8 +23,9 @@ class Card extends Phaser.Sprite {
     public prevParent: Phaser.Group;
     public facedDown: boolean;
 
-    public constructor(state: Game, x: number, y: number, cardNum: number, suitIndex: number) {
+    public constructor(state: PlayState, x: number, y: number, cardNum: number, suitIndex: number) {
         super(state.game, x, y, 'back');
+        this.scale.add(0.3, 0.3);
         this.state = state;
         this.suit = suitIndex;
         this.facedDown = true;

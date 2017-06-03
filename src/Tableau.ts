@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser-ce';
-import Game from './Game';
+import PlayState from './PlayState';
 import Card from './Card';
 
 /**
@@ -10,15 +10,18 @@ import Card from './Card';
 class Tableau extends Phaser.Group {
 
     /**
-     * @param {Phaser.Game} game
+     * @param {PlayState} game
      * @param {number} firstCardX
      * @param {number} firstCardY
      * @param {number} suitIndex
      */
-    public constructor(state: Game, numOfCards: number, point: Phaser.Point) {
+    public constructor(state: PlayState, numOfCards: number, point: Phaser.Point) {
         super(state.game, null);
         let tabCardPoint = point.clone();
-        this.add(new Phaser.Sprite(this.game, tabCardPoint.x - 4, tabCardPoint.y - 3, 'placeholder'));
+        let placeHolder = new Phaser.Sprite(this.game, tabCardPoint.x - 5, tabCardPoint.y - 3, 'placeholder');
+        placeHolder.alpha = 0.6;
+        placeHolder.scale.add(0.3, 0.3);
+        this.add(placeHolder);
         for (let i = 0; i < numOfCards; i++) {
             let card: Card = state.deck.getCard();
             this.add(card);
@@ -27,7 +30,7 @@ class Tableau extends Phaser.Group {
             if (i + 1 === numOfCards) {
                 card.initCard();
             }
-            tabCardPoint.add(0, 30);
+            tabCardPoint.add(0, 20);
         }
     }
 

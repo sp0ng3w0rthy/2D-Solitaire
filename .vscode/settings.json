@@ -6,7 +6,7 @@
     "editor.formatOnSave": true,
     "window.openFoldersInNewWindow": "on",
     "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "tslint.enable": true,
     "tslint.configFile": "./tslint.json",
     "typescript.tsdk": "./node_modules/typescript/lib",
@@ -19,12 +19,10 @@
     "vim.leader": "<space>",
     "vim.disableAnnoyingNeovimMessage": true,
     "files.exclude": {
-        "dist": false,
         "**/.git": true,
-        "node_modules": true,
-        "**/*.js": {
-            "when": "$(basename).ts"
-        }
+        "dist": false,
+        "platforms": true,
+        "node_modules": true
     },
     "vim.otherModesKeyBindingsNonRecursive": [
         {

@@ -8,5 +8,12 @@
     sdkmanager "build-tools;25.0.3" "extras;android;m2repository" "platform-tools" "platforms;android-25" "tools"
     ```
 1. Download the [Visual Studio Emulator for Android](https://www.visualstudio.com/vs/msft-android-emulator/)
+1. Install [Gradle](https://docs.gradle.org/current/userguide/installation.html)
+1. Add environment variables after finishing installations:
+    * `ANDROID_HOME = C:\dev\android`
+    * `tools`
+    * `tools\bin`
+    * `platform-tools`
+    * `gradle-3.5\bin`
 1. Run `npm install`
 1. Run `npm start`

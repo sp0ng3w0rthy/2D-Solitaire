@@ -5,11 +5,11 @@ import PlayState from './PlayState';
 
 class Game extends Phaser.Game {
     public constructor() {
-        super(1280, 720, Phaser.AUTO, 'content', null);
+        super(1280, 720, Phaser.AUTO);
         this.state.add('Game', PlayState, true);
     }
 }
 
 window.onload = () => {
-    new Game();
+    this.window = new Game();
 };

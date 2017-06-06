@@ -5,8 +5,7 @@
     "files.autoSave": "off",
     "editor.formatOnSave": true,
     "window.openFoldersInNewWindow": "on",
-    "window.menuBarVisibility": "toggle",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "tslint.enable": true,
     "tslint.configFile": "./tslint.json",
     "typescript.tsdk": "./node_modules/typescript/lib",
@@ -20,7 +19,6 @@
     "vim.disableAnnoyingNeovimMessage": true,
     "files.exclude": {
         "**/.git": true,
-        "dist": false,
         "platforms": true,
         "node_modules": true
     },

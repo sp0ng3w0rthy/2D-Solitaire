@@ -30,15 +30,6 @@ class PlayState extends Phaser.State {
         this.load.image('hearts', 'assets/hearts_pile.png');
         this.load.image('spades', 'assets/spades_pile.png');
         this.load.spritesheet('deck', 'assets/playing-cards.png', 73.15, 98.3);
-
-        // this.load.image('background', 'www/assets/green_felt.jpg');
-        // this.load.image('placeholder', 'www/assets/placeholder.png');
-        // this.load.image('back', 'www/assets/back.png');
-        // this.load.image('clubs', 'www/assets/clubs_pile.png');
-        // this.load.image('diamonds', 'www/assets/diamonds_pile.png');
-        // this.load.image('hearts', 'www/assets/hearts_pile.png');
-        // this.load.image('spades', 'www/assets/spades_pile.png');
-        // this.load.spritesheet('deck', 'www/assets/playing-cards.png', 73.15, 98.3);
     }
 
     public create() {

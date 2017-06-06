@@ -1,5 +1,6 @@
 {
     "name": "solitaire",
+    "main": "electron/main.js",
     "version": "1.0.0",
     "description": "A Solitaire game written in TypeScript using Phaser and Webpack",
     "repository": {
@@ -15,11 +16,14 @@
     },
     "scripts": {
         "build": "webpack",
-        "debug": "webpack-dev-server"
+        "debug": "webpack-dev-server",
+        "compile": "webpack --config electron\\webpack.electron.js && cp www\\index.html electron && electron",
+        "ele": "electron electron"
     },
     "author": "GV",
     "license": "ISC",
     "devDependencies": {
+        "electron": "^1.6.10",
         "expose-loader": "^0.7.3",
         "file-loader": "^0.11.1",
         "nodemon": "^1.11.0",

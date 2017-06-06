@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
-const CordovaPlugin = require('webpack-cordova-plugin');
 // Phaser webpack config
 var phaserModule = path.join(__dirname, '/node_modules/phaser-ce/');
 var phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
@@ -23,7 +22,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'www'),
-    publicPath: 'www/',
     filename: 'bundled.game.js'
   },
   devtool: 'inline-source-map',
@@ -39,11 +37,7 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.phaser.js' }),
     new webpack.HotModuleReplacementPlugin(),
-    new LiveReloadPlugin(),
-    new CordovaPlugin({
-      config: 'config.xml',
-      src: 'index.html',
-      platform: 'android',
-    })
+    new LiveReloadPlugin()
   ],
+  watch: true
 };

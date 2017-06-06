@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="solitaire.game" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Solitaire</name>
-    <description>Webpack generated Cordova App</description>
-    <author email="guy@citrin-tech.com">GNB</author>
-    <content src="index.html" />
-    <access origin="*" />
-    <engine name="android" spec="^6.2.3" />
-</widget>

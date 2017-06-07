@@ -5,7 +5,7 @@
     "files.autoSave": "off",
     "editor.formatOnSave": true,
     "window.openFoldersInNewWindow": "on",
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "tslint.enable": true,
     "tslint.configFile": "./tslint.json",
     "typescript.tsdk": "./node_modules/typescript/lib",

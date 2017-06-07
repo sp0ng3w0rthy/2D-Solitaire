@@ -15,11 +15,15 @@
     },
     "scripts": {
         "build": "webpack",
-        "debug": "webpack-dev-server"
+        "debug": "webpack-dev-server",
+        "electron": "electron www",
+        "win32": "electron-packager www"
     },
     "author": "GV",
     "license": "ISC",
     "devDependencies": {
+        "electron": "^1.6.10",
+        "electron-packager": "^8.7.1",
         "expose-loader": "^0.7.3",
         "file-loader": "^0.11.1",
         "nodemon": "^1.11.0",

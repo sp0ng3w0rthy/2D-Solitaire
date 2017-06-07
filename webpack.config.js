@@ -39,5 +39,5 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new LiveReloadPlugin()
   ],
-  watch: true
+  watch: false
 };

@@ -21,7 +21,7 @@
     "files.exclude": {
         "**/.git": true,
         "dist": false,
-        "platforms": true,
+        "platforms": false,
         "node_modules": true
     },
     "vim.otherModesKeyBindingsNonRecursive": [
